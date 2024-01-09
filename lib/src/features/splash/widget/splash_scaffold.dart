@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../routes/routes.dart';
 import '../../../core/util/bloc/database/database_bloc.dart';
@@ -42,8 +42,8 @@ class SplashScaffold extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: kAppIconBorderRadius,
-                child: SvgPicture.asset(
-                  'assets/images/core/svg/app_logo.svg',
+                child: Image.asset(
+                  'assets/images/core/svg/app_logo.png',
                   width: 128.w,
                 ),
               ),

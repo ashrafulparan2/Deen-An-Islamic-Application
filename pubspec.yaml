@@ -59,6 +59,7 @@ flutter:
     - assets/images/quran_icon/svg/
     - assets/images/image_of_the_day/
     - assets/sound/
+#    - assets/images/core/svg/app-logo.png
 
   fonts:
     - family: Uthman

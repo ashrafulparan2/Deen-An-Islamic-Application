@@ -33,8 +33,8 @@ class KiblatCard extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: kAppIconBorderRadius,
-                    child: SvgPicture.asset(
-                      'assets/images/core/svg/app_logo.svg',
+                    child: Image.asset(
+                      'assets/images/core/svg/app_logo.png',
                       width: 32.w,
                     ),
                   ),
