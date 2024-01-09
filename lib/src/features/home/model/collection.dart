@@ -14,11 +14,11 @@ List<Collection> collections = [
     'Quran',
     RouteGenerator.quran,
   ),
-  Collection(
-    'assets/images/collection_icon/svg/hadees.svg',
-    'Hadees',
-    'Coming Soon',
-  ),
+  // Collection(
+  //   'assets/images/collection_icon/svg/hadees.svg',
+  //   'Hadees',
+  //   'Coming Soon',
+  // ),
   Collection(
     'assets/images/collection_icon/svg/duas.svg',
     'Dua',
@@ -44,9 +44,9 @@ List<Collection> collections = [
     'Qabah Direction',
     RouteGenerator.qibla,
   ),
-  Collection(
-    'assets/images/collection_icon/svg/other.svg',
-    'Others',
-    'Coming Soon',
-  ),
+  // Collection(
+  //   'assets/images/collection_icon/svg/other.svg',
+  //   'Others',
+  //   'Coming Soon',
+  // ),
 ];
