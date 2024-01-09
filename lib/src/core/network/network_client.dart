@@ -9,8 +9,8 @@ class NetworkClient {
     BaseOptions baseOptions = BaseOptions(
         receiveTimeout: Duration(
             seconds:
-                30), // db file size 15,665,152 byte minimum 5kbps 3133seconds
-        connectTimeout: Duration(seconds: 30),
+                3000), // db file size 15,665,152 byte minimum 5kbps 3133seconds
+        connectTimeout: Duration(seconds: 3000),
         baseUrl: baseUrl,
         maxRedirects: 2);
     _dio = Dio(baseOptions);
