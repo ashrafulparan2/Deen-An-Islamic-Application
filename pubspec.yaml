@@ -1,0 +1,71 @@
+name: deen
+description: Flutter project for Muslim brothers
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.2 <3.0.0'
+
+dependencies:
+  cached_network_image: ^3.1.0
+  cupertino_icons: ^1.0.2
+  dartz: ^0.10.0
+  dio: ^5.1.2
+  equatable: ^2.0.3
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.1
+  flutter_local_notifications: ^12.0.4
+  flutter_native_timezone: ^2.0.0
+  flutter_screenutil: ^5.0.0+2
+  flutter_svg: ^2.0.5
+  geocoding: ^2.1.0
+  geolocator: ^9.0.2
+  google_fonts: ^4.0.4
+  hydrated_bloc: ^9.0.0
+  intl: ^0.18.0
+  lottie: ^2.1.0
+  motion_sensors: ^0.1.0
+  path_provider: ^2.0.2
+  permission_handler: ^10.2.0
+  rxdart: ^0.27.1
+  share_plus: ^6.3.0
+  shared_preferences: ^2.0.6
+  sqflite: ^2.0.0+3
+  url_launcher: ^6.0.9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/core/json/
+    - assets/images/core/svg/
+    - assets/images/error/lottie_json/
+    - assets/images/navigation_icon/svg/
+    - assets/images/home_icon/svg/
+    - assets/images/home_icon/lottie_json/
+    - assets/images/collection_icon/svg/
+    - assets/images/qiblat_icon/svg/
+    - assets/images/praying_time/svg/
+    - assets/images/setting_icon/svg/
+    - assets/images/error/lottie_json/
+    - assets/images/permission/lottie_json/
+    - assets/images/tasbih_icon/svg/
+    - assets/images/dua_icon/svg/
+    - assets/images/quran_icon/svg/
+    - assets/images/image_of_the_day/
+    - assets/sound/
+
+  fonts:
+    - family: Uthman
+      fonts:
+        - asset: assets/fonts/Uthman-Taha-Naskh-Regular.otf
+        - asset: assets/fonts/Uthman-Taha-Naskh-Bold.otf
+          weight: 700
+    - family: Jameel
+      fonts:
+        - asset: assets/fonts/jameel.ttf
