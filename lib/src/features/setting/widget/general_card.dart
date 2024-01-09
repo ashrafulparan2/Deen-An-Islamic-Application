@@ -18,8 +18,8 @@ class GeneralCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(
               8.r,
             ),
-            child: SvgPicture.asset(
-              'assets/images/core/svg/app_logo.svg',
+            child: Image.asset(
+              'assets/images/core/svg/app_logo.png',
               width: 64.w,
             ),
           ),
@@ -35,10 +35,7 @@ class GeneralCard extends StatelessWidget {
             height: 8.h,
           ),
           Text(
-            'The \'Deen\' app is a prodictivity app '
-            'to help Muslims creating better habits '
-            'and increasing their \'iman\' (faith) '
-            ' and \'ibadah\' (acts of worship).',
+            'The \'Deen\' app is a spiritual compass for muslims',
             textAlign: TextAlign.center,
           ),
           ...List.generate(
