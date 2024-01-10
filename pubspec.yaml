@@ -33,6 +33,8 @@ dependencies:
   shared_preferences: ^2.0.6
   sqflite: ^2.0.0+3
   url_launcher: ^6.0.9
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
 
 dev_dependencies:
   flutter_test:
@@ -59,7 +61,6 @@ flutter:
     - assets/images/quran_icon/svg/
     - assets/images/image_of_the_day/
     - assets/sound/
-#    - assets/images/core/svg/app-logo.png
 
   fonts:
     - family: Uthman

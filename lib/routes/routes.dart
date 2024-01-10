@@ -1,3 +1,4 @@
+import 'package:deen/src/features/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../src/core/error/exceptions.dart';
@@ -14,6 +15,10 @@ import '../src/features/quran/screen/quran_screen.dart';
 import '../src/features/setting/screen/thankyou_screen.dart';
 import '../src/features/splash/screen/splash_screen.dart';
 import '../src/features/tasbih/screen/tasbih_screen.dart';
+import '../src/features/tracking/screen/sign_in.dart';
+import '../src/features/tracking/screen/sign_up.dart';
+import '../src/features/tracking/screen/search_screen.dart';
+import '../src/features/home/screen/home_screen.dart';
 
 class RouteGenerator {
   static const String splash = '/';
@@ -29,6 +34,10 @@ class RouteGenerator {
   static const String quran = '/quran';
   static const String locationPermission = '/location_permission';
   static const String notificationPermission = '/notification_permission';
+  static const String SignIn = '/sign_in';
+  static const String SignUp = '/sign_up';
+  static const String tracking = '/search_screen';
+  static const String Home_Screen = '/home_screen';
 
   RouteGenerator._();
 
@@ -62,6 +71,14 @@ class RouteGenerator {
       case notificationPermission:
         return MaterialPageRoute(
             builder: (_) => const NotificationPermissionScreen());
+      case SignIn:
+        return MaterialPageRoute(builder: (_) => SignInPage());
+      case SignUp:
+        return MaterialPageRoute(builder: (_) => SignUpPage());
+      case tracking:
+        return MaterialPageRoute(builder: (_) => SearchScreen());
+      case Home_Screen:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       default:
         throw RouteException('Route not found');
     }
