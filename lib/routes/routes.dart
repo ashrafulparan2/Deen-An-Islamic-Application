@@ -18,7 +18,7 @@ import '../src/features/tasbih/screen/tasbih_screen.dart';
 import '../src/features/tracking/screen/sign_in.dart';
 import '../src/features/tracking/screen/sign_up.dart';
 import '../src/features/tracking/screen/search_screen.dart';
-import '../src/features/home/screen/home_screen.dart';
+import '../src/features/zakat/zakatscreen.dart';
 
 class RouteGenerator {
   static const String splash = '/';
@@ -38,6 +38,7 @@ class RouteGenerator {
   static const String SignUp = '/sign_up';
   static const String tracking = '/search_screen';
   static const String Home_Screen = '/home_screen';
+  static const String zakatscreen = '/zakat_screen';
 
   RouteGenerator._();
 
@@ -79,6 +80,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SearchScreen());
       case Home_Screen:
         return MaterialPageRoute(builder: (_) => HomeScreen());
+      case zakatscreen:
+        return MaterialPageRoute(builder: (_) => ZakatPage());
       default:
         throw RouteException('Route not found');
     }

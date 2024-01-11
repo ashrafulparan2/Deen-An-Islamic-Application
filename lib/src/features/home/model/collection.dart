@@ -14,11 +14,11 @@ List<Collection> collections = [
     'Quran',
     RouteGenerator.quran,
   ),
-  // Collection(
-  //   'assets/images/collection_icon/svg/hadees.svg',
-  //   'Hadees',
-  //   'Coming Soon',
-  // ),
+  Collection(
+    'assets/images/collection_icon/svg/hadees.svg',
+    'Zakat',
+    RouteGenerator.zakatscreen,
+  ),
   Collection(
     'assets/images/collection_icon/svg/duas.svg',
     'Dua',
