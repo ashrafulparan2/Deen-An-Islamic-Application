@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:users_app/appInfo/app_info.dart';
-import 'package:users_app/global/global_var.dart';
+// import 'package:users_app/appInfo/app_info.dart';
+// import 'package:users_app/global/global_var.dart';
 import 'package:http/http.dart' as http;
-import 'package:users_app/models/address_model.dart';
+// import 'package:users_app/models/address_model.dart';
 
 import '../models/direction_details.dart';
 
