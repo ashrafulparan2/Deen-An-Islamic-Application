@@ -165,7 +165,10 @@ class _SignInPageState extends State<SignInPage> {
                                   email: _emailTextController.text.trim(),
                                   password: _passwordTextController.text.trim(),
                                 );
+                                // After successful signup, navigate to SignInPage
                                 print("Successfully Created");
+                                Navigator.pushNamed(
+                                    context, RouteGenerator.SignIn);
                               } catch (e) {
                                 print(e);
                               }
