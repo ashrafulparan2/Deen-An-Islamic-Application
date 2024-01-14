@@ -1,3 +1,4 @@
+import 'package:deen/src/features/calender/calenderScreen.dart';
 import 'package:deen/src/features/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -39,6 +40,7 @@ class RouteGenerator {
   static const String tracking = '/search_screen';
   static const String Home_Screen = '/home_screen';
   static const String zakatscreen = '/zakat_screen';
+  static const String calenderscreen = '/calender_screen';
 
   RouteGenerator._();
 
@@ -82,6 +84,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case zakatscreen:
         return MaterialPageRoute(builder: (_) => ZakatPage());
+      case calenderscreen:
+        return MaterialPageRoute(builder: (_) => HijriCalendarPage());
       default:
         throw RouteException('Route not found');
     }

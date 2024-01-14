@@ -35,6 +35,8 @@ dependencies:
   url_launcher: ^6.0.9
   firebase_core: ^2.24.2
   firebase_auth: ^4.16.0
+  table_calendar: ^3.0.9
+  hijri: ^3.0.0
 
 dev_dependencies:
   flutter_test:
