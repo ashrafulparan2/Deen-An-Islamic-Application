@@ -3,7 +3,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../../routes/routes.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+FirebaseFirestore databaseReference = FirebaseFirestore.instance;
 class SignInPage extends StatefulWidget {
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -223,16 +224,18 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   void pushLocationToFirebase(double latitude, double longitude) {
+
     String uid = user!.uid;
+    String? docId =await getDocumentId(id:uid);
 
     // Reference to the Realtime Database
-    DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
 
+  addData(collectionName:'users',data:{
+    'latitude': latitude,
+    'longitude': longitude,
+  });
     // Update user location
-    databaseReference.child("users").child(uid).child("user_location").set({
-      'latitude': latitude,
-      'longitude': longitude,
-    });
+
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -240,7 +243,23 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
+  Future<String?> getDocumentId({id}) async {
+    QuerySnapshot snap =
+    await firestore.collection('userdata').where('id', isEqualTo: id).get();
 
+    if (snap.docs.isNotEmpty) {
+      DocumentSnapshot doc =
+      snap.docs.firstWhere((element) => element['id'] == id);
+      return doc.id;
+    } else
+      return null;
+  }
+  Future<void> updateData({collection, docId, data}) async {
+    firestore.collection(collection).doc(docId).update(data);
+  }
+  Future<void> addData({collectionName, data}) async {
+    await firestore.collection(collectionName).add(data);
+  }
   // Function to determine text color based on the current theme
   Color _getTextColor(BuildContext context) {
     return Theme.of(context).brightness == Brightness.light

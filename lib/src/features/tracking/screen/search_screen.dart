@@ -10,7 +10,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  DatabaseReference reference = FirebaseDatabase.instance.ref().child('users');
+  FirebaseFirestore firestore=FirebaseFirestore.instance;
 
   Widget listItem({required double latitude, required double longitude}) {
     return Container(
