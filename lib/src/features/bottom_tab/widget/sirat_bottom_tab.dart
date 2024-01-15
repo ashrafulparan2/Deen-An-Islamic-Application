@@ -59,7 +59,7 @@ class SiratNavigationBar extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                'assets/images/navigation_icon/svg/quran_nfill.svg',
+                'assets/images/core/svg/mosque-solid.svg',
                 width: 24.sp,
                 color: Theme.of(context)
                     .bottomNavigationBarTheme
@@ -67,7 +67,7 @@ class SiratNavigationBar extends StatelessWidget {
               ),
               label: 'Mosque',
               activeIcon: SvgPicture.asset(
-                'assets/images/navigation_icon/svg/quran_nfill.svg',
+                'assets/images/core/svg/mosque-solid.svg',
                 color: Theme.of(context)
                     .bottomNavigationBarTheme
                     .selectedItemColor,
