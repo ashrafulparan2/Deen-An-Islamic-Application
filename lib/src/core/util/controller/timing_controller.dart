@@ -26,10 +26,14 @@ class TimingController {
   TimingController(this.timings) {
     _timingsList = [
       {'Fajr': timings.fajr},
+      {'Sunrise': timings.sunrise},
       {'Dhuhr': timings.dhuhr},
       {'Asr': timings.asr},
       {'Maghrib': timings.maghrib},
+      {'Sunset': timings.sunset},
       {'Isha': timings.isha},
+      {'Iftar': timings.imsak},
+      {'Sehri': timings.sunset}
     ];
     getTimingCount();
   }
