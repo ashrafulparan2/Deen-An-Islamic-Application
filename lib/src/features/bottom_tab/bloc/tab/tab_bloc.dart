@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:deen/src/features/MosqueTracker/mosqueTracker.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,8 @@ class TabBloc extends Bloc<TabEvent, TabState> {
 final List<Widget> pages = [
   HomeScreen(),
   SignInPage(),
-  QuranScreen(fromNav: true),
+  // QuranScreen(fromNav: true),
+  MosqueScreen(),
   BookmarkScreen(),
   SettingScreen(),
 ];
