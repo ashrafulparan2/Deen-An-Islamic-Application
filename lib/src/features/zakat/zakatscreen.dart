@@ -155,10 +155,8 @@ class _ZakatPageState extends State<ZakatPage> {
     double debt = double.tryParse(debtController.text) ?? 0;
     double totalGold = double.tryParse(goldController.text) ?? 0;
 
-    // সোনার মূল্য হচ্ছে ৪৫০০ টাকা প্রতি গ্রাম (আপনি এটি প্রতিস্থানে সত্যিকারের মানে প্রতিস্থানে প্রতিস্থানে প্রতিস্থানে প্রতিস্থানে স্থাপন করতে পারেন)
     double goldPricePerGram = 7218;
 
-    // সোনার মূল্য হিসেব
     goldValue = totalGold * goldPricePerGram;
 
     double total = savings - debt + goldValue;
@@ -167,7 +165,6 @@ class _ZakatPageState extends State<ZakatPage> {
 
     zakatAmount = isGoldNisabReached ? (savings - debt + goldValue) * 0.025 : 0;
 
-    // ইউআই আপডেট করুন
     setState(() {});
   }
 }
