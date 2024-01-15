@@ -65,7 +65,7 @@ class SiratNavigationBar extends StatelessWidget {
                     .bottomNavigationBarTheme
                     .unselectedItemColor,
               ),
-              label: 'Quran',
+              label: 'Nearby Mosque',
               activeIcon: SvgPicture.asset(
                 'assets/images/navigation_icon/svg/quran_nfill.svg',
                 color: Theme.of(context)
