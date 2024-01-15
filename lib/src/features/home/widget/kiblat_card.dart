@@ -64,7 +64,7 @@ class KiblatCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Current Location',
+                      'Chittagong',
                     ),
                     // TextButton(
                     //   onPressed: () {

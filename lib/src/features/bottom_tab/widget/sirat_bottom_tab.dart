@@ -65,7 +65,7 @@ class SiratNavigationBar extends StatelessWidget {
                     .bottomNavigationBarTheme
                     .unselectedItemColor,
               ),
-              label: 'Nearby Mosque',
+              label: 'Mosque',
               activeIcon: SvgPicture.asset(
                 'assets/images/navigation_icon/svg/quran_nfill.svg',
                 color: Theme.of(context)
@@ -82,7 +82,7 @@ class SiratNavigationBar extends StatelessWidget {
                     .unselectedItemColor,
                 width: 24.sp,
               ),
-              label: 'Bookmark',
+              label: 'Personal Tracker',
               activeIcon: SvgPicture.asset(
                 'assets/images/navigation_icon/svg/bookmark_nfill.svg',
                 color: Theme.of(context)

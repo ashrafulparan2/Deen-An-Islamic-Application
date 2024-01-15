@@ -132,7 +132,7 @@ class _ZakatPageState extends State<ZakatPage> {
               ),
               SizedBox(height: 20),
               Text(
-                'Value of gold: ${goldValue.toStringAsFixed(2)} g',
+                'Value of gold: ${goldValue.toStringAsFixed(2)} BDT',
                 style: TextStyle(fontSize: 18.0),
               ),
               Text(
@@ -156,15 +156,16 @@ class _ZakatPageState extends State<ZakatPage> {
     double totalGold = double.tryParse(goldController.text) ?? 0;
 
     // সোনার মূল্য হচ্ছে ৪৫০০ টাকা প্রতি গ্রাম (আপনি এটি প্রতিস্থানে সত্যিকারের মানে প্রতিস্থানে প্রতিস্থানে প্রতিস্থানে প্রতিস্থানে স্থাপন করতে পারেন)
-    double goldPricePerGram = 4500;
+    double goldPricePerGram = 7218;
 
     // সোনার মূল্য হিসেব
-    goldValue = totalGold;
+    goldValue = totalGold * goldPricePerGram;
 
-    // নিসাব পৌঁছানো হয়েছে কিনা চেক করুন (নিসাব হলো যাকাতের জন্য অবশ্যই একটি ন্যায্য পরিমাণ)
-    isGoldNisabReached = goldValue >= 87.48; // নিসাব ২০২২ সালের
+    double total = savings - debt + goldValue;
 
-    zakatAmount = isGoldNisabReached ? (savings - debt) * 0.025 : 0;
+    isGoldNisabReached = total >= (87.48 * goldPricePerGram);
+
+    zakatAmount = isGoldNisabReached ? (savings - debt + goldValue) * 0.025 : 0;
 
     // ইউআই আপডেট করুন
     setState(() {});

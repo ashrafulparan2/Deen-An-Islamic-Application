@@ -52,11 +52,11 @@ class QuranScaffold extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 horizontal: 16.w,
               ),
-              child: SvgPicture.asset(
-                'assets/images/navigation_icon/svg/search.svg',
-                width: 24.w,
-                color: Theme.of(context).textTheme.bodyMedium!.color,
-              ),
+              // child: SvgPicture.asset(
+              //   'assets/images/navigation_icon/svg/search.svg',
+              //   width: 24.w,
+              //   color: Theme.of(context).textTheme.bodyMedium!.color,
+              // ),
             ),
           )
         ],
