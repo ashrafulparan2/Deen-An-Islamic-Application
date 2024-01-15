@@ -11,8 +11,10 @@ class _ZakatPageState extends State<ZakatPage> {
   TextEditingController savingsController = TextEditingController();
   TextEditingController debtController = TextEditingController();
   TextEditingController goldController = TextEditingController();
+  TextEditingController silverController = TextEditingController();
   bool isGoldNisabReached = false;
   double goldValue = 0;
+  double silverValue = 0;
   double zakatAmount = 0;
 
   @override
@@ -122,6 +124,31 @@ class _ZakatPageState extends State<ZakatPage> {
                 ),
               ),
               SizedBox(height: 20),
+              TextField(
+                controller: silverController,
+                keyboardType: TextInputType.number,
+                style: TextStyle(
+                  color: Colors.cyan,
+                ),
+                decoration: InputDecoration(
+                  labelText: 'Total Silver (in grams)',
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.purple),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              RichText(
+                text: TextSpan(
+                  text: 'Example: 150g',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12.0,
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: calculateZakat,
                 style: ElevatedButton.styleFrom(
@@ -132,7 +159,11 @@ class _ZakatPageState extends State<ZakatPage> {
               ),
               SizedBox(height: 20),
               Text(
-                'Value of gold: ${goldValue.toStringAsFixed(2)} BDT',
+                'Value of Gold: ${goldValue.toStringAsFixed(2)} BDT',
+                style: TextStyle(fontSize: 18.0),
+              ),
+              Text(
+                'Value of Silver: ${silverValue.toStringAsFixed(2)} BDT',
                 style: TextStyle(fontSize: 18.0),
               ),
               Text(
@@ -154,16 +185,20 @@ class _ZakatPageState extends State<ZakatPage> {
     double savings = double.tryParse(savingsController.text) ?? 0;
     double debt = double.tryParse(debtController.text) ?? 0;
     double totalGold = double.tryParse(goldController.text) ?? 0;
+    double totalSilver = double.tryParse(silverController.text) ?? 0;
 
     double goldPricePerGram = 7218;
+    double silverPricePerGram = 819.02;
 
     goldValue = totalGold * goldPricePerGram;
 
-    double total = savings - debt + goldValue;
+    silverValue = totalSilver * silverPricePerGram;
 
-    isGoldNisabReached = total >= (87.48 * goldPricePerGram);
+    double total = savings - debt + goldValue + silverValue;
 
-    zakatAmount = isGoldNisabReached ? (savings - debt + goldValue) * 0.025 : 0;
+    isGoldNisabReached = total >= (612.36 * silverPricePerGram);
+
+    zakatAmount = isGoldNisabReached ? (total) * 0.025 : 0;
 
     setState(() {});
   }
