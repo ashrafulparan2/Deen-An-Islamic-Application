@@ -35,6 +35,9 @@ dependencies:
   url_launcher: ^6.0.9
   firebase_core: ^2.24.2
   firebase_auth: ^4.16.0
+
+  google_maps_flutter: ^2.5.3
+
   table_calendar: ^3.0.9
   hijri: ^3.0.0
 
