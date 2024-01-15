@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:deen/routes/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,8 @@ import 'dart:async';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
-
+  static const IconData arrow_back_ios_outlined =
+      IconData(0xee84, fontFamily: 'MaterialIcons', matchTextDirection: true);
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
@@ -19,39 +21,67 @@ class _SearchScreenState extends State<SearchScreen> {
   // FirebaseFirestore firestore=FirebaseFirestore.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   User? user = FirebaseAuth.instance.currentUser;
+  // final databaseReference = FirebaseDatabase.instance.reference();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  // User? user = FirebaseAuth.instance.currentUser;
 
-  Widget listItem({required double latitude, required double longitude}) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.all(10),
-      height: 110,
-      color: Colors.amberAccent,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Latitude: $latitude',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Text(
-            'Longitude: $longitude',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget listItem({required double latitude, required double longitude}) {
+  //   return Container(
+  //     margin: const EdgeInsets.all(10),
+  //     padding: const EdgeInsets.all(10),
+  //     height: 110,
+  //     color: Colors.amberAccent,
+  //     child: Column(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Text(
+  //           'Latitude: $latitude',
+  //           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+  //         ),
+  //         const SizedBox(
+  //           height: 5,
+  //         ),
+  //         Text(
+  //           'Longitude: $longitude',
+  //           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
-    print('hghi');
     return Scaffold(
       appBar: AppBar(
         title: const Text('User Tracker'),
+        // leading: TextButton(
+        //   onPressed: () {
+        //     setState(() {
+        //       auth.signOut();
+        //       Navigator.pushNamed(context, RouteGenerator.tabScreen);
+        //     });
+        //   },
+        //   child: Text(
+        //     "Log Out",
+        //     style: TextStyle(
+        //       color: Colors.cyan,
+        //     ),
+        //   ),
+        // ),
+        actions: [
+          // Add the logout icon button
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () {
+              setState(() {
+                auth.signOut();
+                Navigator.pushNamed(context, RouteGenerator.tabScreen);
+              });
+            },
+          ),
+        ],
       ),
       body: Container(
         height: double.infinity,
