@@ -44,9 +44,9 @@ List<Collection> collections = [
     'Qabah Direction',
     RouteGenerator.qibla,
   ),
-  // Collection(
-  //   'assets/images/collection_icon/svg/other.svg',
-  //   'Others',
-  //   'Coming Soon',
-  // ),
+  Collection(
+    'assets/images/collection_icon/svg/other.svg',
+    'Calender',
+    RouteGenerator.calenderscreen,
+  ),
 ];
