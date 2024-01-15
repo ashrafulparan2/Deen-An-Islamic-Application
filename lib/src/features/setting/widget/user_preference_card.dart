@@ -78,28 +78,28 @@ class UserPreferenceCard extends StatelessWidget {
               ),
             ],
           ),
-          Divider(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Notification',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: Theme.of(context).primaryColor),
-              ),
-              BlocBuilder<NotificationBloc, NotificationState>(
-                builder: (context, state) {
-                  return ChangeNotificationSwitch(
-                      value: state.status == PermissionStatus.granted,
-                      onChanged: (_) {
-                        notificationSwitchOnToggle(state, context);
-                      });
-                },
-              ),
-            ],
-          )
+          // Divider(),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Text(
+          //       'Notification',
+          //       style: Theme.of(context)
+          //           .textTheme
+          //           .bodyMedium!
+          //           .copyWith(color: Theme.of(context).primaryColor),
+          //     ),
+          //     BlocBuilder<NotificationBloc, NotificationState>(
+          //       builder: (context, state) {
+          //         return ChangeNotificationSwitch(
+          //             value: state.status == PermissionStatus.granted,
+          //             onChanged: (_) {
+          //               notificationSwitchOnToggle(state, context);
+          //             });
+          //       },
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );
