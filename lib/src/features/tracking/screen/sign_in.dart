@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import '../../../../routes/routes.dart';
 
 class SignInPage extends StatefulWidget {
@@ -15,6 +17,7 @@ class _SignInPageState extends State<SignInPage> {
 
   final _auth = FirebaseAuth.instance;
   bool _isSignIn = true; // Default to sign-in
+  User? user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -145,6 +148,16 @@ class _SignInPageState extends State<SignInPage> {
                                   email: _emailTextController.text.trim(),
                                   password: _passwordTextController.text.trim(),
                                 );
+
+                                Position position =
+                                    await Geolocator.getCurrentPosition(
+                                  desiredAccuracy: LocationAccuracy.high,
+                                );
+
+                                // Push the location to Firebase Realtime Database
+                                pushLocationToFirebase(
+                                    position.latitude, position.longitude);
+
                                 Navigator.pushNamed(
                                     context, RouteGenerator.tracking);
                                 print("Successfully login");
@@ -205,6 +218,25 @@ class _SignInPageState extends State<SignInPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void pushLocationToFirebase(double latitude, double longitude) {
+    String uid = user!.uid;
+
+    // Reference to the Realtime Database
+    DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
+
+    // Update user location
+    databaseReference.child("users").child(uid).child("user_location").set({
+      'latitude': latitude,
+      'longitude': longitude,
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Location pushed to Firebase'),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:deen/src/features/MosqueTracker/mosqueTracker.dart';
+import 'package:deen/src/features/tracking/screen/search_screen.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../bookmark/screen/bookmark_screen.dart';
@@ -25,9 +27,10 @@ class TabBloc extends Bloc<TabEvent, TabState> {
   }
 }
 
+User? user = FirebaseAuth.instance.currentUser;
 final List<Widget> pages = [
   HomeScreen(),
-  SignInPage(),
+  (user == null) ? SignInPage() : SearchScreen(),
   // QuranScreen(fromNav: true),
   MosqueScreen(),
   BookmarkScreen(),

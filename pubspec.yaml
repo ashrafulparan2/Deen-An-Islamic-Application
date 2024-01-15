@@ -39,6 +39,7 @@ dependencies:
   google_maps_flutter: ^2.5.3
 
   table_calendar: ^3.0.9
+  firebase_database: ^10.4.0
   hijri: ^3.0.0
 
 dev_dependencies:
