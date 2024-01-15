@@ -1,6 +1,12 @@
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
+import 'package:geolocator/geolocator.dart';
+import '../../../../global/global.dart';
+
+import 'dart:async';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -10,7 +16,9 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  FirebaseFirestore firestore=FirebaseFirestore.instance;
+  // FirebaseFirestore firestore=FirebaseFirestore.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  User? user = FirebaseAuth.instance.currentUser;
 
   Widget listItem({required double latitude, required double longitude}) {
     return Container(
@@ -40,25 +48,89 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('hghi');
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fetching data'),
+        title: const Text('User Tracker'),
       ),
       body: Container(
         height: double.infinity,
-        child: FirebaseAnimatedList(
-          query: reference.child('user_location'),
-          itemBuilder: (BuildContext context, DataSnapshot snapshot,
-              Animation<double> animation, int index) {
-            double latitude = snapshot.child('latitude').toString() as double;
-            double longitude = snapshot.child('longitude').toString() as double;
-            print('hello');
-            print(longitude);
+        child: StreamBuilder(
+          stream: firestore.collection('users').snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.hasData) {
+              var data = snapshot.data!.docs;
+              var x = data.map((e) {
+                // print(e['latitude']);
+                return e['latitude'];
+              }).toList();
+              var y = data.map((e) {
+                // print(e['latitude']);
+                return e['longitude'];
+              }).toList();
 
-            return listItem(latitude: latitude, longitude: longitude);
+              print(x);
+              print(y);
+              // List locations = data.map((e){})
+              print(data);
+              return Container(
+                child: FutureBuilder(
+                  future: getCurrentLiveLocationOfUser(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return GoogleMaps.GoogleMap(
+                        initialCameraPosition: GoogleMaps.CameraPosition(
+                          target: GoogleMaps.LatLng(
+                            currentPositionOfUser!.latitude,
+                            currentPositionOfUser!.longitude,
+                          ),
+                          zoom: 15,
+                        ),
+                        zoomControlsEnabled: true,
+                        zoomGesturesEnabled: true,
+                        mapType: GoogleMaps.MapType.normal,
+                        myLocationEnabled: true,
+                        onMapCreated:
+                            (GoogleMaps.GoogleMapController controller) {
+                          _controller.complete(controller);
+                        },
+                        markers: Set.from(
+                          List.generate(x.length, (index) {
+                            return GoogleMaps.Marker(
+                              markerId: GoogleMaps.MarkerId(index.toString()),
+                              position: GoogleMaps.LatLng(
+                                x[index],
+                                y[index],
+                              ),
+                              infoWindow: GoogleMaps.InfoWindow(
+                                title: 'Custom Place $index',
+                                snippet: 'Custom Snippet $index',
+                              ),
+                            );
+                          }),
+                        ),
+                      );
+                    } else {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
+              );
+            } else
+              return Container();
           },
         ),
       ),
     );
   }
+
+  Future<void> getCurrentLiveLocationOfUser() async {
+    Position positionOfUser = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.bestForNavigation,
+    );
+    currentPositionOfUser = positionOfUser;
+  }
+
+  final Completer<GoogleMaps.GoogleMapController> _controller =
+      Completer<GoogleMaps.GoogleMapController>();
 }
