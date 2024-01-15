@@ -1,71 +1,125 @@
-import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
-import 'package:lottie/lottie.dart' as Lottie;
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
+import 'package:geolocator/geolocator.dart';
 import '../../../../global/global.dart';
 
-class SearchScreen extends StatelessWidget {
-  SearchScreen();
+import 'dart:async';
+
+class SearchScreen extends StatefulWidget {
+  const SearchScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  // FirebaseFirestore firestore=FirebaseFirestore.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  User? user = FirebaseAuth.instance.currentUser;
+
+  Widget listItem({required double latitude, required double longitude}) {
+    return Container(
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
+      height: 110,
+      color: Colors.amberAccent,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Latitude: $latitude',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            'Longitude: $longitude',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    print('hghi');
     return Scaffold(
-      body: FutureBuilder(
-        future: getCurrentLiveLocationOfUser(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return FutureBuilder(
-              future: getNearbyMosques(),
-              builder: (context, placesSnapshot) {
-                if (placesSnapshot.connectionState == ConnectionState.done) {
-                  return GoogleMaps.GoogleMap(
-                    initialCameraPosition: GoogleMaps.CameraPosition(
-                      target: GoogleMaps.LatLng(
-                        currentPositionOfUser!.latitude,
-                        currentPositionOfUser!.longitude,
-                      ),
-                      zoom: 15,
-                    ),
-                    zoomControlsEnabled: true,
-                    zoomGesturesEnabled: true,
-                    mapType: GoogleMaps.MapType.normal,
-                    myLocationEnabled: true,
-                    onMapCreated: (GoogleMaps.GoogleMapController controller) {
-                      _controller.complete(controller);
-                    },
-                    markers: Set.from(placesSnapshot.data!.map(
-                      (place) => GoogleMaps.Marker(
-                        markerId: GoogleMaps.MarkerId(place['place_id']),
-                        position: GoogleMaps.LatLng(
-                          place['geometry']['location']['lat'],
-                          place['geometry']['location']['lng'],
-                        ),
-                        infoWindow: GoogleMaps.InfoWindow(
-                          title: place['name'],
-                          snippet: place['vicinity'],
-                        ),
-                      ),
-                    )),
-                  );
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              },
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
+      appBar: AppBar(
+        title: const Text('User Tracker'),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
+      body: Container(
+        height: double.infinity,
+        child: StreamBuilder(
+          stream: firestore.collection('users').snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.hasData) {
+              var data = snapshot.data!.docs;
+              var x = data.map((e) {
+                // print(e['latitude']);
+                return e['latitude'];
+              }).toList();
+              var y = data.map((e) {
+                // print(e['latitude']);
+                return e['longitude'];
+              }).toList();
+
+              print(x);
+              print(y);
+              // List locations = data.map((e){})
+              print(data);
+              return Container(
+                child: FutureBuilder(
+                  future: getCurrentLiveLocationOfUser(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return GoogleMaps.GoogleMap(
+                        initialCameraPosition: GoogleMaps.CameraPosition(
+                          target: GoogleMaps.LatLng(
+                            currentPositionOfUser!.latitude,
+                            currentPositionOfUser!.longitude,
+                          ),
+                          zoom: 15,
+                        ),
+                        zoomControlsEnabled: true,
+                        zoomGesturesEnabled: true,
+                        mapType: GoogleMaps.MapType.normal,
+                        myLocationEnabled: true,
+                        onMapCreated:
+                            (GoogleMaps.GoogleMapController controller) {
+                          _controller.complete(controller);
+                        },
+                        markers: Set.from(
+                          List.generate(x.length, (index) {
+                            return GoogleMaps.Marker(
+                              markerId: GoogleMaps.MarkerId(index.toString()),
+                              position: GoogleMaps.LatLng(
+                                x[index],
+                                y[index],
+                              ),
+                              infoWindow: GoogleMaps.InfoWindow(
+                                title: 'Custom Place $index',
+                                snippet: 'Custom Snippet $index',
+                              ),
+                            );
+                          }),
+                        ),
+                      );
+                    } else {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
+              );
+            } else
+              return Container();
+          },
+        ),
       ),
     );
   }
@@ -77,33 +131,6 @@ class SearchScreen extends StatelessWidget {
     currentPositionOfUser = positionOfUser;
   }
 
-  Future<List<Map<String, dynamic>>> getNearbyMosques() async {
-    final apiKey =
-        'AIzaSyAz53HJ9y8znPBGmXlHvb3ic7uIJmr2Mdg'; // Replace with your API key
-    final radius = 5000; // Adjust the radius as needed
-    final url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-        'location=${currentPositionOfUser!.latitude},${currentPositionOfUser!.longitude}'
-        '&radius=$radius&type=mosque&key=$apiKey';
-
-    final response = await http.get(Uri.parse(url));
-    final Map<String, dynamic> data = json.decode(response.body);
-
-    return List<Map<String, dynamic>>.from(data['results']);
-  }
-
   final Completer<GoogleMaps.GoogleMapController> _controller =
       Completer<GoogleMaps.GoogleMapController>();
-
-  static const GoogleMaps.CameraPosition _kLake = GoogleMaps.CameraPosition(
-    bearing: 192.8334901395799,
-    target: GoogleMaps.LatLng(37.43296265331129, -122.08832357078792),
-    tilt: 59.440717697143555,
-    zoom: 19.151926040649414,
-  );
-
-  Future<void> _goToTheLake() async {
-    final GoogleMaps.GoogleMapController controller = await _controller.future;
-    await controller
-        .animateCamera(GoogleMaps.CameraUpdate.newCameraPosition(_kLake));
-  }
 }
