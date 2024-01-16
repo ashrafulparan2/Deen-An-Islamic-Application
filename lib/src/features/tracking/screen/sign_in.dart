@@ -165,6 +165,13 @@ class _SignInPageState extends State<SignInPage> {
                                 print("Successfully login");
                               } catch (e) {
                                 print(e);
+                                String s = e.toString();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content:
+                                        Text(s),
+                                  ),
+                                );
                               }
                             } else {
                               // Sign Up logic
@@ -172,6 +179,11 @@ class _SignInPageState extends State<SignInPage> {
                               if (_passwordTextController.text !=
                                   _confirmPasswordController.text) {
                                 // Show an error message or handle password mismatch
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Password Mismatch'),
+                                  ),
+                                );
                                 return;
                               }
 
@@ -182,6 +194,11 @@ class _SignInPageState extends State<SignInPage> {
                                 );
                                 // After successful signup, navigate to SignInPage
                                 print("Successfully Created");
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text("Successfully Created"),
+                                  ),
+                                );
                                 Navigator.pushNamed(
                                     context, RouteGenerator.SignIn);
                               } catch (e) {
@@ -235,7 +252,7 @@ class _SignInPageState extends State<SignInPage> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Location pushed to Firebase'),
+        content: Text('Login Successful'),
       ),
     );
   }
