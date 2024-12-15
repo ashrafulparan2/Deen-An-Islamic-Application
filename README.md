@@ -3,7 +3,7 @@
 
 ![Banner](assets/banner.png)
 
-![Flutter version](https://img.shields.io/badge/Flutter-Version%202.5.0-blue) ![Dart version](https://img.shields.io/badge/Dart-Version%202.14.1-blue) ![Sirate version](https://img.shields.io/badge/Siate%20Mustaqeem-Version%201.0.0-green) ![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red?style=flat)
+![Flutter version](https://img.shields.io/badge/Flutter-Version%202.5.0-blue) ![Dart version](https://img.shields.io/badge/Dart-Version%202.14.1-blue) ![Deen Version](https://img.shields.io/badge/Siate%20Mustaqeem-Version%201.0.0-green) ![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red?style=flat)
 
 ## Installation steps
 
