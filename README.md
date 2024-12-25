@@ -22,33 +22,33 @@ of an application, while allowing time for the app engine to load the applicatio
 includes a splash screen. Through splash screen users can anticipate a smooth transition, setting
 the stage for an optimal and engaging app experience.
 
-![alt text](image.png)
+![alt text](./assets/images/documentation/./assets/images/documentation/image.png)
 
 Once the first splash screen finishes, a nice-looking second one comes up, adding a bit of flair
 before quickly switching to the home page in just one second.
 
-![alt text](image-1.png)
+![alt text](./assets/images/documentation/image-1.png)
 
 ## Home Page
 Users can easily access all critical features through the homepage's integrated design. A
 countdown at the top of the page indicates when the next prayer time is. The collection portion
 exhibits numerous application functionalities.
-![alt text](image-2.png)
+![alt text](./assets/images/documentation/image-2.png)
 
 If we scroll this page hadees of the day and image of the day will be shown. The respective
 references of hadees and image is also given.
 
-![alt text](image-3.png)
+![alt text](./assets/images/documentation/image-3.png)
 
 ## Quran Page
 In this page the Holy Quran is illustrated. The page has two section which is Surah and Juz.
 User can read Surah and also, they can read according to Juz.
 
-![alt text](image-4.png)
+![alt text](./assets/images/documentation/image-4.png)
 
 After clicking on any surah, the details of that specific surah will be displayed in the next page.
 
-![alt text](image-5.png)
+![alt text](./assets/images/documentation/image-5.png)
 
 Zakat Calculator:
 In this page zakat calculator was implemented. There are three text boxes in this page for taking
@@ -57,7 +57,7 @@ calculated in taka. If total amount of asset crosses the amount of nisab then th
 the zakat.
 
 
-![alt text](image-6.png)
+![alt text](./assets/images/documentation/image-6.png)
 
 
 ## Names of Allah
@@ -65,60 +65,60 @@ This page contains the ninety-nine names of Allah (Al Asma ul Husna). User can a
 the meaning of that name by clicking on a particular name.
 
 
-![alt text](image-7.png)
+![alt text](./assets/images/documentation/image-7.png)
 
 
 Clicking on a specific name will reveal the details associated with that particular name.
 
-![alt text](image-8.png)
+![alt text](./assets/images/documentation/image-8.png)
 
 ## Dua Page
 In this page dua of different kinds of surah are illustrated. User can recite these duas in their
 free time.
 
-![alt text](image-9.png)
+![alt text](./assets/images/documentation/image-9.png)
 
 ## Tasbih Page
 In this page several kinds of dua are illustrated at first. User can select any dua for counting
 tasbih. Required count for each round is also given which increase the user experience.
 
-![alt text](image-10.png)
+![alt text](./assets/images/documentation/image-10.png)
 
 If we click any dua then the tasbih counter will be displayed. We can also reset the value of
 tasbih counter.
 
-![alt text](image-11.png)
+![alt text](./assets/images/documentation/image-11.png)
 
 ## Prayer Time Page
 In this page prayer times are illustrated according to user’s location. If user change their
 location prayer time will also change according to their location.
-![alt text](image-12.png)
+![alt text](./assets/images/documentation/image-12.png)
 
 ## Qiblah Compass Page
 In this page qiblah compass was implemented. The direction of the qiblah is always directed
 to the qiblah according to the user’s location.
 
-![alt text](image-13.png)
+![alt text](./assets/images/documentation/image-13.png)
 
 ## Hizri Calendar
 In this page the calendar is displayed in both English and Hizri format. This page was
 implemented using hijri library.
 
-![alt text](image-14.png)
+![alt text](./assets/images/documentation/image-14.png)
 
 ## Nearest Mosque Finder
 In this page users can find the nearest mosque from their location. All the mosque in 5km radius
 is shown in this page. Current location of the user is fetched using geo locator of pub get library.
 All the mosque within the region is shown using a red marker. The information of mosque will
 be updated if the location of user changed.
-![alt text](image-15.png)
+![alt text](./assets/images/documentation/image-15.png)
 
 ## Personal Tracker
 In this page user can track the information of the tasbih, hadees, aya, surah and dua. All of these
 can be added to this page by clicking on the bookmark sign. User can also delete the respective
 information at any time.
 
-![alt text](image-16.png)
+![alt text](./assets/images/documentation/image-16.png)
 
 
 ## User Tracker
@@ -136,7 +136,7 @@ measure crowd levels around mosques. This unique feature not only enhances user 
 but also contributes to a more informed and efficient navigation experience, aligning with our
 commitment to providing innovative solutions within the realm of our application.
 
-![alt text](image-17.png)
+![alt text](./assets/images/documentation/image-17.png)
 
 ## How to contribute
 
